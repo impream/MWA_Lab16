@@ -1,3 +1,29 @@
-<h1>
-  {{title}}
-</h1>
+<div>
+    <form [formGroup]="userpost" (ngSubmit)="onSubmit(userpost)">
+        <label for="name">Name</label>
+        <div>
+            <input type="text" name="name" id="name" [formControl]="userpost.controls['name']">
+        </div>
+        <span *ngIf="!userpost.controls['name'].valid && userpost.controls['name'].dirty">Required<br/></span>
+        <br/>
+
+        <label for="email">Email</label>
+        <div>
+            <input type="text" name="email" id="email" [formControl]="userpost.controls['email']">
+        </div>
+         <span *ngIf="!userpost.controls['email'].valid && userpost.controls['email'].touched">Required<br/></span>
+        <br/>
+
+        <label for="post">Post</label>
+        <div>
+            <textarea name="post" id="post" [formControl]="userpost.controls['post']"></textarea>
+        </div>
+         <span *ngIf="!userpost.controls['post'].valid  && userpost.controls['post'].touched">Min length 10<br/></span>
+         <br/>
+    
+         <div>
+             <button type="submit" [disabled]="!userpost.valid" >Submit</button>
+             <button type="button" (click)="getData()">Get Data</button>
+        </div>
+    </form>
+</div>
